@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataTableService", "DynamicDataTableService\DynamicDataTableService.csproj", "{C0B66C72-BAEF-4937-9640-BCE1D33A3460}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{D4DAD589-7BCC-499B-9F67-941A4AE9AD07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcExample", "MvcExample\MvcExample.csproj", "{DADA5F3F-A863-4C13-B3FC-5046ACE41A2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0B66C72-BAEF-4937-9640-BCE1D33A3460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0B66C72-BAEF-4937-9640-BCE1D33A3460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0B66C72-BAEF-4937-9640-BCE1D33A3460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0B66C72-BAEF-4937-9640-BCE1D33A3460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4DAD589-7BCC-499B-9F67-941A4AE9AD07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4DAD589-7BCC-499B-9F67-941A4AE9AD07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4DAD589-7BCC-499B-9F67-941A4AE9AD07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4DAD589-7BCC-499B-9F67-941A4AE9AD07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DADA5F3F-A863-4C13-B3FC-5046ACE41A2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DADA5F3F-A863-4C13-B3FC-5046ACE41A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DADA5F3F-A863-4C13-B3FC-5046ACE41A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DADA5F3F-A863-4C13-B3FC-5046ACE41A2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,55 @@
+﻿@{
+
+    Layout = null;
+ }
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dynamic Data Table Example</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" ng-app="exampleApp" ng-controller="exampleController">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h3>Example 1</h3>
+
+                Selected: {{example1Selected}}
+
+                <sb-data-table identifier="Example1"
+                               selected="example1Selected"
+                               widths="[120,200,200]"></sb-data-table>
+
+                <sb-data-table identifier="Example2"
+                               widths="[120,200,200]"></sb-data-table>
+
+
+                <sb-data-table identifier="Example3"
+                               widths="[120,200,200]"></sb-data-table>
+
+                <sb-data-table identifier="Example4"
+                               widths="[120,200,200,200]"></sb-data-table>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+
+    <script src="~/App/Utilities/DataTable/data-table.js"></script>
+    <script src="~/App/Example/ExampleApp.js"></script>
+
+</body>
+</html>

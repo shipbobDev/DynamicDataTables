@@ -1,0 +1,11 @@
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\bin\Debug\DynamicDataTableService.dll.config
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\bin\Debug\DynamicDataTableService.dll
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\bin\Debug\DynamicDataTableService.pdb
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\bin\Debug\EntityFramework.dll
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\bin\Debug\System.Linq.Dynamic.dll
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\bin\Debug\EntityFramework.xml
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\obj\Debug\DynamicDataTableService.csprojResolveAssemblyReference.cache
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\obj\Debug\DynamicDataTableService.dll
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DynamicDataTableService\obj\Debug\DynamicDataTableService.pdb

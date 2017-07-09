@@ -1,0 +1,10 @@
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\bin\Debug\DataModel.dll.config
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\bin\Debug\DataModel.dll
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\bin\Debug\DataModel.pdb
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\bin\Debug\EntityFramework.dll
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\bin\Debug\EntityFramework.xml
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\obj\Debug\DataModel.dll
+c:\users\mustafa\documents\visual studio 2017\Projects\DynamicDataTables\DataModel\obj\Debug\DataModel.pdb

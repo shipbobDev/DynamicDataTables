@@ -1,0 +1,77 @@
+﻿.sb-table-wrapper {
+    overflow: hidden;
+    transition: padding-left ease .6s;
+}
+
+.sb-filter-sidebar {
+    float: left;
+    margin-left: -250px;
+    width: 250px;
+    height: 200px;
+    padding-right: 10px;
+}
+
+.sb-table {
+    float: left;
+    width: 100%;
+}
+
+.sb-table-wrapper.open {
+    padding-left: 260px;
+}
+
+.sb-filter-sidebar h3 {
+    margin-top: 0;
+}
+
+.sb-filter-sidebar .panel-group {
+    margin-bottom: 0;
+}
+
+    .sb-filter-sidebar .panel-group hr {
+        margin: 10px 0;
+    }
+
+.sb-filter-sidebar .panel-default, .sb-filter-sidebar .panel-default > .panel-heading {
+    background: none;
+    border: none;
+}
+
+.sb-filter-sidebar .panel-body {
+    padding: 0;
+}
+
+.sb-filter-sidebar .panel-title a {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    display: inline-block !important;
+    background: none !important;
+}
+
+    .sb-filter-sidebar .panel-title a.accordion-toggle:not(.collapsed) .fa-angle-right {
+        display: none;
+        min-width: 10px;
+    }
+
+    .sb-filter-sidebar .panel-title a.accordion-toggle.collapsed .fa-angle-down {
+        display: none;
+        min-width: 10px;
+    }
+
+    .sb-filter-sidebar .panel-title a:hover {
+        color: inherit !important;
+    }
+
+.sb-filter-sidebar .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border: none;
+}
+
+.sb-scrollable {
+    overflow-x: scroll;
+}
+.sb-table-info {
+    float:left;
+    line-height: 30px;
+    margin: 10px 0;
+}

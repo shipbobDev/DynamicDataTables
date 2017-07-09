@@ -1,0 +1,335 @@
+﻿<div class="row sb-table-wrapper" ng-class="{'open' : showAdditionalFilters}">
+
+    <div class="sb-filter-sidebar">
+
+        <h3>Additional Filters</h3>
+
+        <div class="panel-group accordion" ng-repeat="c in (tableDefinition.FilterDefinitions | filter: {Visible: true})">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle accordion-toggle-styled" data-toggle="collapse" ng-href="#{{'collapse_' + identifier + '_' + $index}}" aria-expanded="true">
+                            <i class="fa fa-angle-right"></i>
+                            <i class="fa fa-angle-down"></i>
+                            <span ng-bind="c.HeaderText"></span>
+                        </a>
+                        <small role="button" ng-show="(c.FirstSelectedValue != null && c.FirstSelectedValue != '') || (c.SecondSelectedValue != null && c.SecondSelectedValue != '')" ng-click="c.FirstSelectedValue = null; c.SecondSelectedValue = null; search();"> - Clear</small>
+                    </h4>
+                </div>
+                <div ng-attr-id="{{'collapse_' + identifier + '_' + $index }}" class="panel-collapse collapse in" aria-expanded="true">
+                    <div class="panel-body">
+
+                        <!--String-->
+                        <input type="text" ng-model="c.FirstSelectedValue" on-enter="search()" class="form-control form-filter input-sm" ng-if="c.Type == 'String'">
+
+                        <!--Enum-->
+                        <div class="mt-radio-list" ng-if="c.Type == 'Enum'">
+                            <label class="mt-radio mt-radio-outline" ng-repeat="item in c.SelectModel">
+                                <input type="radio" ng-value="item.Key" ng-change="search()" ng-model="c.FirstSelectedValue" checked=""> {{item.DisplayValue}}
+                                <span></span>
+                            </label>
+                        </div>
+                        <!--Int-->
+                        <div class="input-group" ng-if="c.Type == 'Int32'">
+                            <!--<span class="input-group-addon">
+                                From
+                            </span>-->
+                            <input type="text" ng-model="c.FirstSelectedValue" on-enter="search()" class="form-control" placeholder="From">
+                            <span class="input-group-addon">
+                                To
+                            </span>
+                            <input type="text" ng-model="c.SecondSelectedValue" on-enter="search()" class="form-control" placeholder="To">
+                        </div>
+
+                        <!--Int-->
+                        <!--Boolean-->
+                        <div class="mt-radio-list" ng-if="c.Type == 'Boolean'">
+                            <label class="mt-radio mt-radio-outline">
+                                <input type="radio" value="true" ng-change="search()" ng-model="c.FirstSelectedValue" checked=""> Yes
+                                <span></span>
+                            </label>
+                            <label class="mt-radio mt-radio-outline">
+                                <input type="radio" value="false" ng-change="search()" ng-model="c.FirstSelectedValue" checked=""> No
+                                <span></span>
+                            </label>
+                        </div>
+                        <!--Boolean-->
+                        <!--DateTime-->
+                        <div class="input-group date date-picker margin-bottom-5" data-date-format="mm/dd/yyyy" ng-if="c.Type == 'DateTime'">
+                            <input type="text" ng-model="c.FirstSelectedValue" ng-change="search()" class="form-control form-filter input-sm" readonly="" placeholder="From">
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm default" type="button">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="input-group date date-picker" data-date-format="mm/dd/yyyy" ng-if="c.Type == 'DateTime'">
+                            <input type="text" ng-model="c.SecondSelectedValue" ng-change="search()" class="form-control form-filter input-sm" readonly="" placeholder="To">
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm default" type="button">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!--DateTime-->
+
+
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="sb-table">
+        <div class="row" ng-show="(tableDefinition.FilterDefinitions | filter: {Visible: true}).length > 0">
+            <div class="col-md-8 col-sm-12">
+                <a role="button" class="additional-filters" ng-click="showAdditionalFilters = !showAdditionalFilters;" ng-class="{'additional-filters-visible' : showAdditionalFilters}"><span ng-show="showAdditionalFilters">Hide</span><span ng-hide="showAdditionalFilters">Show</span> Additional Filters</a>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="table-group-actions pull-right">
+                    <button ng-click="search()" class="btn btn-sm green btn-outline margin-bottom table-group-action-input">
+                        <i class="fa fa-search"></i> Search
+                    </button>
+                    <button ng-click="reset()" class="btn btn-sm red btn-outline table-group-action-input">
+                        <i class="fa fa-times"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="dataTables_wrapper dataTables_extended_wrapper no-footer">
+            <div class="row" ng-hide="hideTopPagination">
+                <!-- Pagination, Page Size -->
+                <div class="col-sm-12">
+                    <div class="sb-table-info">
+                        Page&nbsp;
+                    </div>
+                    <div class="input-group sb-table-info" style="width:130px;">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-disabled="pageNumber <= 1" ng-click="prevPage()">
+                                <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;
+                            </button>
+                        </div>
+                        <input class="form-control text-center" on-enter="updatePageNumber()" ng-model="pageNumber">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-disabled="pageNumber >= pageCount" ng-click="nextPage()">
+                                &nbsp;<span class="glyphicon glyphicon-chevron-right"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sb-table-info">
+                        &nbsp;of <span ng-bind="pageCount"></span>&nbsp;
+                    </div>
+                    <div class="sb-table-info"> | Found total {{recordCount}} records</div>
+                    <div class="sb-table-info" ng-hide="selected.length == 0">
+                        &nbsp;| <b>{{selected.length}} selected</b>
+                    </div>
+                    <div class="pull-right">
+                        <button ng-click="search()" class="btn btn-sm btn-success margin-bottom">
+                            <i class="glyphicon glyphicon-search"></i> Search
+                        </button>
+                        <button ng-click="reset()" class="btn btn-sm btn-danger">
+                            <i class="glyphicon glyphicon-remove"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <!-- End - Pagination, Page Size -->
+            </div>
+            <div class="sb-scrollable">
+                <table class="table table-striped table-bordered table-hover dataTable no-footer" style="margin:0 !important; min-width:100%;" ng-style="{ 'width' : tableWidth }" aria-describedby="datatable_ajax_info" role="grid">
+                    <thead>
+                        <tr role="row" class="heading">
+                            <th class="sorting_disabled text-center">
+                                <!-- Select All CheckBox -->
+                                <div ng-style="{ 'width' : selectWidth }">
+                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                        <input type="checkbox" ng-model="allSelected" ng-click="selectAll()" class="group-checkable">
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <!-- Select All CheckBox -->
+                            </th>
+                            <!-- Repeat Columns For Headers -->
+                            <th ng-repeat="c in tableDefinition.ColumnDefinitions | filter: {Visible : true}" ng-class="{'sorting' : c.Sortable, 'sorting_desc' : c.Identifier == request.SortColumn && !request.Asc, 'sorting_asc' : c.Identifier == request.SortColumn && request.Asc}" ng-click="sortBy(c)" ng-bind="c.HeaderText"></th>
+                        </tr>
+                        <tr role="row" class="filter">
+                            <th ng-attr-width="{{selectWidth}}">&nbsp;</th>
+                            <th ng-repeat="c in tableDefinition.ColumnDefinitions | filter: {Visible : true}">
+
+                                <!-- Column Filters -->
+                                <div ng-show="c.Filterable" ng-style="{ 'width' : widths[$index] }">
+                                    <!-- String -->
+                                    <input type="text" ng-model="c.FirstSelectedValue" placeholder="{{c.HeaderText}}" on-enter="search()" class="form-control form-filter input-sm" ng-if="c.Type == 'String'">
+
+                                    <!-- Enum -->
+                                    <select class="form-control form-filter input-sm" ng-if="c.Type == 'Enum'" ng-change="search()" ng-options="item as item.DisplayValue for item in c.SelectModel track by item.Key" ng-model="c.FirstSelectedValue">
+                                        <option value="">Select...</option>
+                                    </select>
+
+                                    <!-- Int -->
+                                    <div ng-if="c.Type == 'Int32'">
+                                        <div class="margin-bottom-5">
+                                            <input type="text" ng-model="c.FirstSelectedValue" on-enter="search()" class="form-control form-filter input-sm" placeholder="From">
+                                        </div>
+                                        <input type="text" ng-model="c.SecondSelectedValue" on-enter="search()" class="form-control form-filter input-sm" placeholder="To" ng-if="c.Type == 'Int32'">
+                                    </div>
+
+
+
+                                    <!--<div ng-if="c.Type == 'Int32' && c.PrimaryKey">
+                                        <input type="text" ng-model="c.FirstSelectedValue" ng-if="c.Type == 'Int32' && c.PrimaryKey" on-enter="search()" class="form-control" placeholder="{{c.HeaderText}}">
+                                    </div>-->
+                                    <!-- End - Int -->
+                                    <!-- Boolean -->
+                                    <select class="form-control form-filter input-sm" ng-if="c.Type == 'Boolean'" ng-change="search()" ng-model="c.FirstSelectedValue">
+                                        ed
+                                        <option value="">Select...</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                    <!-- End - Boolean -->
+                                    <!-- DateTime -->
+                                    <div class="input-group date date-picker margin-bottom-5" data-date-format="mm/dd/yyyy" ng-if="c.Type == 'DateTime'">
+                                        <input type="text" ng-model="c.FirstSelectedValue" ng-change="search()" class="form-control form-filter input-sm" readonly="" placeholder="From">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default btn-sm default" type="button">
+                                                &nbsp;<i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group date date-picker" data-date-format="mm/dd/yyyy" ng-if="c.Type == 'DateTime'">
+                                        <input type="text" ng-model="c.SecondSelectedValue" ng-change="search()" class="form-control form-filter input-sm" readonly="" placeholder="To">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default btn-sm default" type="button">
+                                               &nbsp;<i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <!-- End - DateTime -->
+                                </div>
+                                <!-- End - Column Filters -->
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat-start="row in tableData">
+                            <td class="text-center">
+                                <!-- Row Selection Column -->
+                                <div>
+                                    <i ng-show="subRowTemplate && showSubRowTemplate" ng-click="expand(row)" role="button" class="fa" ng-class="{'fa-plus-circle' : !row.expanded, 'fa-minus-circle' : row.expanded}"></i>
+                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                        <input type="checkbox" class="group-checkable" ng-checked="isSelected(row)" ng-click="select(row)">
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <!-- End - Row Selection Column -->
+
+                            </td>
+                            <td ng-repeat="c in tableDefinition.ColumnDefinitions | filter: {Visible : true}">
+
+                                <div ng-if="cellTemplates[$index] != null" ng-include="cellTemplates[$index]" ng-style="{ 'width' : widths[$index] }">
+                                </div>
+                                <div ng-if="cellTemplates[$index] == null" ng-style="{ 'width' : widths[$index] }">
+                                    <div ng-if="c.Editable == false">
+                                        <!-- Editable -->
+                                        <span ng-switch on="c.Type">
+
+                                            <span ng-switch-when="Boolean">
+
+                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline disabled">
+                                                    <input type="checkbox" ng-model="row[c.Identifier]" class="group-checkable" disabled="disabled">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                            <span ng-switch-when="Enum">
+                                                <span ng-bind="(c.SelectModel | filter: { Key: row[c.Identifier] })[0].DisplayValue"></span>
+                                            </span>
+                                            <span ng-switch-when="DateTime">
+                                                <span ng-bind="row[c.Identifier] | toDate | toLocal | date: 'MM/dd/yyyy HH:mm'"></span>
+                                            </span>
+
+                                            <span ng-switch-when="String">
+                                                <span ng-bind="row[c.Identifier]"></span>
+                                            </span>
+
+                                            <span ng-switch-default ng-bind="row[c.Identifier]">
+                                            </span>
+                                        </span>
+                                        <!-- Editable -->
+                                    </div>
+                                    <div ng-if="c.Editable">
+                                        <!-- Not Editable -->
+                                        <span ng-switch on="c.Type">
+
+                                            <span ng-switch-when="Boolean">
+                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline" ng-class="{'disabled' : !isSelected(row)}">
+                                                    <input type="checkbox" ng-model="row[c.Identifier]" class="group-checkable" ng-disabled="!isSelected(row)">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                            <span ng-switch-when="Enum">
+                                                <span ng-bind="(c.SelectModel | filter: { Key: row[c.Identifier] })[0].DisplayValue"></span>
+                                            </span>
+                                            <span ng-switch-when="DateTime">
+                                                <span ng-bind="row[c.Identifier] | toDate | toLocal | date: 'MM/dd/yyyy HH:mm'"></span>
+                                            </span>
+
+                                            <span ng-switch-when="String">
+                                                <input type="text" class="form-control" ng-model="row[c.Identifier]" ng-disabled="!isSelected(row)" />
+                                            </span>
+                                            <span ng-switch-when="Int32">
+                                                <input type="text" class="form-control" ng-model="row[c.Identifier]" ng-disabled="!isSelected(row)" />
+                                            </span>
+
+                                            <span ng-switch-default ng-bind="row[c.Identifier]">
+                                            </span>
+                                        </span>
+                                        <!-- Not Editable -->
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr ng-repeat-end ng-show="row.expanded">
+                            <td ng-attr-colspan="{{tableDefinition.ColumnDefinitions.length + 1}}" ng-include="subRowTemplate"></td>
+                        </tr>
+                        <tr ng-show="tableData.length == 0">
+                            <td ng-attr-colspan="{{tableDefinition.ColumnDefinitions.length + 1}}" class="text-center">
+                                No records found!
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <!-- Pagination, Page Size -->
+                <div class="col-sm-12">
+                    <div class="sb-table-info">
+                        Page&nbsp;
+                    </div>
+                    <div class="input-group sb-table-info" style="width:130px;">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-disabled="pageNumber <= 1" ng-click="prevPage()">
+                                <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;
+                            </button>
+                        </div>
+                        <input class="form-control text-center" on-enter="updatePageNumber()" ng-model="pageNumber">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-disabled="pageNumber >= pageCount" ng-click="nextPage()">
+                                &nbsp;<span class="glyphicon glyphicon-chevron-right"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sb-table-info">
+                        &nbsp;of <span ng-bind="pageCount"></span>&nbsp;
+                    </div>
+                    <div class="sb-table-info"> | Found total {{recordCount}} records</div>
+                    <span class="sb-table-info" ng-hide="selected.length == 0">
+                        &nbsp;| <b>{{selected.length}} selected</b>
+                    </span>
+                </div>
+                <!-- End - Pagination, Page Size -->
+            </div>
+        </div>
+    </div>
+</div>
